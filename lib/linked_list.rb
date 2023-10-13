@@ -24,6 +24,7 @@ class LinkedList
     else
       count = 1
       current_node = @head
+      require 'pry'; binding.pry
       while current_node.next_node != nil
         current_node = current_node.next_node
         count += 1
@@ -33,7 +34,18 @@ class LinkedList
   end
 
   def to_string
-    self.head.data
+    strings = []
+    current_node = @head
+    strings << current_node.data
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+      strings << current_node.data
+    end
+    strings.join(" ")
   end
+  #   require 'pry'; binding.pry
+  #   current_data = current_node.data
+  #   require 'pry'; binding.pry
+  # end
 
 end
