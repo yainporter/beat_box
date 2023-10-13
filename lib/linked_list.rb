@@ -1,7 +1,7 @@
 require './lib/node'
 
 class LinkedList
-  attr_reader :head
+  attr_reader :head, :count
 
   def initialize
     @head = nil
@@ -13,10 +13,8 @@ class LinkedList
     else
       # How do I access the next node? I know that I can access the attributes of a node if I pass in that data...
       current_node = @head
-      if current_node.next_node == nil
-        current_data = current_node.data
-        @head = Node.new(current_data, Node.new(data))
-      end
+      node_2 = Node.new(data)
+      current_node.next_node = node_2
     end
   end
 
