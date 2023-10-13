@@ -14,15 +14,29 @@ RSpec.describe LinkedList do
     expect(list.head).to eq(nil)
   end
 
-  it 'can append data' do
-    list = LinkedList.new
+
+  describe '#append' do
+    it 'can append data' do
+      list = LinkedList.new
+      list.append("dee")
     
-    expect(list.append("dee")).to eq()
-  end
+      expect(list.head.data).to eq("dee")
+    end
 
-  it 'can access the next node' do
+    it 'can append more than one data' do
+      list = LinkedList.new
+      list.append("dee")
+      data_2 = list.append("doo").data
 
-    expect().to eq()
+      expect(data_2).to eq("doop")
+    end
+
+    it 'can access the next node' do
+      list = LinkedList.new
+
+      expect().to eq()
+    end
+
   end
 
   it 'can count' do
