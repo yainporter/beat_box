@@ -28,25 +28,91 @@ RSpec.describe LinkedList do
       list.append("dee")
       data_2 = list.append("doo").data
 
-      expect(data_2).to eq("doop")
+      expect(data_2).to eq("doo")
     end
 
-    it 'can access the next node' do
+    it 'can access the next node of the next node' do
       list = LinkedList.new
+      list.append("dee")
+      data_2 = list.append("doo").data
 
-      expect().to eq()
+
+      node_2 = list.head.next_node.next_node
+      expect(node_2).to eq(nil)
     end
 
   end
 
   it 'can count' do
+    list = LinkedList.new
+    list.append("dee")
 
-    expect().to eq()
+    expect(list.count).to eq(1)
+
+    list.append("doo")
+    expect(list.count).to eq(2)
   end
 
   it 'can convert data to a string' do
+    list = LinkedList.new
+    list.append("dee")
 
-    expect().to eq()
+    string = list.to_string
+    expect(string).to eq("dee")
   end
 
+  it 'can add nodes to the head of the list' do 
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.prepend("doop")
+
+    head = list.head.data
+
+    expect(head).to eq("doop")
+    expect(list.count).to eq(3)
+  end
+
+  it 'can add a new data to a given position in the list' do
+
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.prepend("doop")
+    list.insert(1, "wheee")
+
+    expect(list.to_string).to eq("doop wheee dee dop")
+  end
+  
+  it 'can find data in a list' do
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.append("deep")
+    list.prepend("doop")  
+
+    expect(list.find(2, 2)).to eq("dop deep")
+  end
+
+  it 'can tell you whether the data is in the list' do
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.append("deep")
+    list.prepend("doop")  
+
+    expect(list.includes?("dop")).to eq(true)
+  end
+
+  it 'can remove the last element from the list and return it' do
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.append("deep")
+    list.prepend("doop")  
+    list.pop
+    require 'pry'; binding.pry
+    expect(list.pop).to eq("deep")
+    
+  end
 end
