@@ -113,6 +113,6 @@ RSpec.describe LinkedList do
     list.pop
     require 'pry'; binding.pry
     expect(list.pop).to eq("deep")
-    
+    expect(list.count).to eq("3")
   end
 end

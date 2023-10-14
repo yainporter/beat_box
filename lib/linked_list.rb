@@ -105,6 +105,7 @@ class LinkedList
 
   def pop
     current_node = @head
+    pop_data = nil
     if current_node == nil
       current_node.data
       return nil
@@ -114,21 +115,15 @@ class LinkedList
       until next_node.next_node == nil
         current_node = next_node
         next_node = current_node.next_node
-        next_node.data
       end 
-      next_node.data
-      new_list
-      require 'pry'; binding.pry
-      # new_list = current_node
-      # until next_node.next_node == nil
-      #   current_node = next_node
-      # end
+      pop_data = next_node.data
+      current_node.next_node = nil
     end
+    pop_data
   end
 
   def includes?(data)
     list = self.to_string
     list.include?(data)
   end
-
 end
