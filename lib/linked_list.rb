@@ -1,7 +1,7 @@
 require './lib/node'
 
 class LinkedList
-  attr_reader :head, :count
+  attr_accessor :head, :count
 
   def initialize
     @head = nil
@@ -76,19 +76,6 @@ class LinkedList
     first_half.next_node = new_node
   end
 
-  def position(num)
-    current_node = @head
-    current_node_place = 0
-    place_holder = {current_node_place => current_node}
-    key_1 = num - 1
-    until current_node.next_node == nil
-      current_node_place += 1
-      current_node = current_node.next_node
-      place_holder.store(current_node_place, current_node)
-    end
-    place_holder[num]
-  end
-
   # Position, how many elements to return
   def find(pos, num)
     pos = pos
@@ -126,4 +113,20 @@ class LinkedList
     list = self.to_string
     list.include?(data)
   end
+
+protected
+
+  def position(num)
+    current_node = @head
+    current_node_place = 0
+    place_holder = {current_node_place => current_node}
+    key_1 = num - 1
+    until current_node.next_node == nil
+      current_node_place += 1
+      current_node = current_node.next_node
+      place_holder.store(current_node_place, current_node)
+    end
+    place_holder[num]
+  end
+
 end
