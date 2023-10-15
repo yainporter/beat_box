@@ -11,20 +11,23 @@ class LinkedList
     data_array = []
     data_array << data.lines(" ")
     data_array = data_array.flatten
-    if @head == nil
-      @head = Node.new(data)
-    else
+    while @head == nil
+      @head = Node.new(data_array.shift)
+      if data_array.length == 0
+        break
+      end
+    end
       current_node = @head
+      next_node = @head.next_node
       while current_node.next_node != nil
         next_node = current_node.next_node
         current_node = next_node
       end
-      data_array.each do |array|
-      array = data_array.shift
-      current_node.next_node = Node.new(array)
-      current_node = current_node.next_node
+      until data_array.length == 0
+        array = data_array.shift
+        current_node.next_node = Node.new(array)
+        current_node = current_node.next_node
       end
-    end
   end
 
   def count

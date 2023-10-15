@@ -42,9 +42,10 @@ RSpec.describe LinkedList do
 
     it 'can append more than one data all at once' do
       list = LinkedList.new
+      list.append("teehee")
       list.append("beep boop baap beee deep doop daap deee")
-
-      expect(list.to_string).to eq("beep boop baap beee deep doop daap deee")
+      
+      expect(list.count).to eq(9)
     end 
 
   end
