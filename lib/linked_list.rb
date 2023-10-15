@@ -4,14 +4,11 @@ class LinkedList
   attr_accessor :head, :count
 
   def initialize(head = nil)
-    @head = Node.new(head)
+    @head = nil
   end
 
   def append(data)
-    data_array = []
-    data_array << data.lines(' ')
-    data_array = data_array.flatten
-    data_array.map! {|array| array.rstrip}
+    data_array = to_array(data)
     while @head == nil
       @head = Node.new(data_array.shift)
       if data_array.length == 0
@@ -59,14 +56,15 @@ class LinkedList
 
   # prepend will look at the current node of the train at the head, then take it's place with the data passed through
   def prepend(data)
-    data_array = []
-    data_array << data.lines(' ')
-    data_array = data_array.flatten
-    data_array.map! {|array| array.rstrip}
+    data_array = to_array(data)
+    # data_array = []
+    # data_array << data.lines(' ')
+    # data_array = data_array.flatten
+    # data_array.map! {|array| array.rstrip}
 #editing code to make sure prepend also takes more than one data
     until data_array.length == 0
     current_node = @head
-    @head = Node.new(data_array.shift)
+    @head = Node.new(data_array.pop)
     new_head = @head
     new_head.next_node = current_node
     end
@@ -147,4 +145,10 @@ protected
     place_holder[num]
   end
 
+  def to_array(data)
+    data_array = []
+    data_array << data.lines(' ')
+    data_array = data_array.flatten
+    data_array.map! {|array| array.rstrip}
+  end
 end

@@ -8,7 +8,7 @@ RSpec.describe LinkedList do
     expect(list).to be_an_instance_of LinkedList
   end
 
-  it 'contains a head' do
+  it 'contains a head attribute with a node' do
     list = LinkedList.new
 
     expect(list.head).to eq(nil)
@@ -35,6 +35,10 @@ RSpec.describe LinkedList do
       list.append("dee doo")
 
       expect(list.to_string).to eq("dee doo")
+
+      list.append("beep boop baap beee deep doop daap deee")
+
+      expect(list.count).to eq(10)
     end
 
     it 'can access the next node of the next node' do
@@ -46,14 +50,6 @@ RSpec.describe LinkedList do
       node_2 = list.head.next_node.next_node
       expect(node_2).to eq(nil)
     end
-
-    it 'can append more than one data all at once' do
-      list = LinkedList.new
-      list.append("beep boop baap beee deep doop daap deee")
-
-      expect(list.count).to eq(8)
-    end 
-
   end
 
   it 'can count' do
@@ -126,5 +122,27 @@ RSpec.describe LinkedList do
 
     expect(list.pop).to eq("deep")
     expect(list.count).to eq(3)
+  end
+
+  it 'can prepend data' do
+    list = LinkedList.new
+    list.append("dee")
+    list.append("dop")
+    list.append("deep")
+    list.prepend("doop") 
+    prepend_data = list.head.data
+
+    expect(prepend_data).to eq("doop")
+  end
+
+  it 'can prepend more than one data at once' do
+    list = LinkedList.new
+    list.append("dee")
+    list.prepend("doop") 
+    list.prepend("this is me testing my code")
+    prepend_data = list.head.data
+
+    expect(prepend_data).to eq("this")
+    expect(list.count).to eq(8)
   end
 end

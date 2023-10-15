@@ -6,7 +6,8 @@ bb = BeatBox.new("beep")
 bb.prepend("Boop")
 bb.prepend("beep")
 bb.prepend("wop beep boop baap beee deep doop daap deee")
-require 'pry'; binding.pry
+bb.append("wop beep boop baap beee")
+
 bb.play
 
 

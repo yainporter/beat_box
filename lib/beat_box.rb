@@ -4,8 +4,13 @@ require './lib/node'
 class BeatBox 
   attr_accessor :list
 
-  def initialize(data)
-    @list = LinkedList.new(data)
+  def initialize(data = nil)
+    if data != nil
+    @list = LinkedList.new
+    @list.head = Node.new(data)
+    else
+      @list  = LinkedList.new
+    end
   end
 
   def append(data)
