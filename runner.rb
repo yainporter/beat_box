@@ -3,9 +3,9 @@ require './lib/linked_list'
 require './lib/beat_box'
 
 bb = BeatBox.new
-# bb.append("Boop")
-bb.append("beep")
-bb.append("wop beep boop baap beee deep doop daap deee")
+bb.prepend("Boop")
+bb.prepend("beep")
+bb.prepend("wop beep boop baap beee deep doop daap deee")
 require 'pry'; binding.pry
 bb.play
 

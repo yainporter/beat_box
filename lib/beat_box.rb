@@ -16,7 +16,15 @@ class BeatBox
     self.list.count
   end
 
-  def play
+  def to_string
+    self.list.to_string
+  end
 
+  def prepend(data)
+    self.list.prepend(data)
+  end
+  
+  def play
+    `say -r 500 -v Boing \"#{self.to_string}\"`
   end
 end

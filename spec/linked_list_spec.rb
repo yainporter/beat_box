@@ -20,13 +20,20 @@ RSpec.describe LinkedList do
       list = LinkedList.new
       result = list.append("dee")
     
-      expect(result.data).to eq("dee")
+      expect(list.head.data).to eq("dee")
     end
 
     it 'can append more than one data' do
       list = LinkedList.new
       list.append("dee")
       list.append("doo")
+      expect(list.to_string).to eq("dee doo")
+    end
+
+    it 'can append more than one data at once' do
+      list = LinkedList.new
+      list.append("dee doo")
+
       expect(list.to_string).to eq("dee doo")
     end
 
@@ -42,10 +49,9 @@ RSpec.describe LinkedList do
 
     it 'can append more than one data all at once' do
       list = LinkedList.new
-      list.append("teehee")
       list.append("beep boop baap beee deep doop daap deee")
-      
-      expect(list.count).to eq(9)
+
+      expect(list.count).to eq(8)
     end 
 
   end

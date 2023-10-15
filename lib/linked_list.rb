@@ -9,8 +9,9 @@ class LinkedList
 
   def append(data)
     data_array = []
-    data_array << data.lines(" ")
+    data_array << data.lines(' ')
     data_array = data_array.flatten
+    data_array.map! {|array| array.rstrip}
     while @head == nil
       @head = Node.new(data_array.shift)
       if data_array.length == 0
@@ -58,11 +59,20 @@ class LinkedList
 
   # prepend will look at the current node of the train at the head, then take it's place with the data passed through
   def prepend(data)
+    data_array = []
+    data_array << data.lines(' ')
+    data_array = data_array.flatten
+    data_array.map! {|array| array.rstrip}
+#editing code to make sure prepend also takes more than one data
+    until data_array.length == 0
     current_node = @head
-    @head = Node.new(data)
+    @head = Node.new(data_array.shift)
     new_head = @head
     new_head.next_node = current_node
+    end
   end
+
+  
 
     #I will need a place holder hash to count their positions?
   def insert(pos, data)

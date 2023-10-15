@@ -3,7 +3,7 @@ require './lib/node'
 require './lib/beat_box'
 
 RSpec.describe BeatBox do
-  
+
   it 'initializes with a LinkedList' do
     bb = BeatBox.new
 
@@ -22,7 +22,7 @@ RSpec.describe BeatBox do
     bb.append("my")
     bb.append("name")
     bb.append("is")
-
+require 'pry'; binding.pry
     expect(bb.count).to eq(4)
   end
 
