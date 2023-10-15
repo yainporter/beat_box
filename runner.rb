@@ -2,7 +2,7 @@ require './lib/node'
 require './lib/linked_list'
 require './lib/beat_box'
 
-bb = BeatBox.new
+bb = BeatBox.new("beep")
 bb.prepend("Boop")
 bb.prepend("beep")
 bb.prepend("wop beep boop baap beee deep doop daap deee")

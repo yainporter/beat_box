@@ -3,8 +3,8 @@ require './lib/node'
 class LinkedList
   attr_accessor :head, :count
 
-  def initialize
-    @head = nil
+  def initialize(head = nil)
+    @head = Node.new(head)
   end
 
   def append(data)

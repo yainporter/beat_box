@@ -4,8 +4,8 @@ require './lib/node'
 class BeatBox 
   attr_accessor :list
 
-  def initialize
-    @list = LinkedList.new
+  def initialize(data)
+    @list = LinkedList.new(data)
   end
 
   def append(data)
@@ -23,7 +23,7 @@ class BeatBox
   def prepend(data)
     self.list.prepend(data)
   end
-  
+
   def play
     `say -r 500 -v Boing \"#{self.to_string}\"`
   end
