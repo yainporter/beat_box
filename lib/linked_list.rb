@@ -8,17 +8,22 @@ class LinkedList
   end
 
   def append(data)
+    data_array = []
+    data_array << data.lines(" ")
+    data_array = data_array.flatten
     if @head == nil
       @head = Node.new(data)
     else
       current_node = @head
-      new_node = Node.new(data)
-      # To add more than just two, I need to make sure I loop it
       while current_node.next_node != nil
         next_node = current_node.next_node
         current_node = next_node
-      end 
-      current_node.next_node = new_node
+      end
+      data_array.each do |array|
+      array = data_array.shift
+      current_node.next_node = Node.new(array)
+      current_node = current_node.next_node
+      end
     end
   end
 

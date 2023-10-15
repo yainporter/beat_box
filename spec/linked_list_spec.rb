@@ -18,28 +18,34 @@ RSpec.describe LinkedList do
   describe '#append' do
     it 'can append data' do
       list = LinkedList.new
-      list.append("dee")
+      result = list.append("dee")
     
-      expect(list.head.data).to eq("dee")
+      expect(result.data).to eq("dee")
     end
 
     it 'can append more than one data' do
       list = LinkedList.new
       list.append("dee")
-      data_2 = list.append("doo").data
-
-      expect(data_2).to eq("doo")
+      list.append("doo")
+      expect(list.to_string).to eq("dee doo")
     end
 
     it 'can access the next node of the next node' do
       list = LinkedList.new
       list.append("dee")
-      data_2 = list.append("doo").data
+      list.append("doo")
 
 
       node_2 = list.head.next_node.next_node
       expect(node_2).to eq(nil)
     end
+
+    it 'can append more than one data all at once' do
+      list = LinkedList.new
+      list.append("beep boop baap beee deep doop daap deee")
+
+      expect(list.to_string).to eq("beep boop baap beee deep doop daap deee")
+    end 
 
   end
 
@@ -110,9 +116,8 @@ RSpec.describe LinkedList do
     list.append("dop")
     list.append("deep")
     list.prepend("doop")  
-    list.pop
-    require 'pry'; binding.pry
+
     expect(list.pop).to eq("deep")
-    expect(list.count).to eq("3")
+    expect(list.count).to eq(3)
   end
 end
