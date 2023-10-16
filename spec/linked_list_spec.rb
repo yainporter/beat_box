@@ -90,7 +90,13 @@ RSpec.describe LinkedList do
     list.prepend("doop")
     list.insert(1, "wheee")
 
+    expect(list.count).to eq(4)
     expect(list.to_string).to eq("doop wheee dee dop")
+
+    list.insert(1, "dee doo dah whoop whaap")
+    expect(list.count).to eq(9)
+    expect(list.to_string). to eq("doop dee doo dah whoop whaap wheee dee dop")
+
   end
   
   it 'can find data in a list' do

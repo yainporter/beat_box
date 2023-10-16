@@ -15,24 +15,23 @@ class LinkedList
         break
       end
     end
+    until data_array.length == 0
+      array = data_array.shift
       current_node = @head
       next_node = @head.next_node
       while current_node.next_node != nil
         next_node = current_node.next_node
         current_node = next_node
       end
-      until data_array.length == 0
-        array = data_array.shift
-        current_node.next_node = Node.new(array)
-        current_node = current_node.next_node
-      end
+      current_node.next_node = Node.new(array)
+      current_node = current_node.next_node
+    end
   end
 
   def count
     if @head == nil
       count = 0 
     else
-      # Count current node, then move on to the next node, like a train
       count = 1
       current_node = @head
       while current_node.next_node != nil
@@ -54,14 +53,8 @@ class LinkedList
     strings.join(" ")
   end
 
-  # prepend will look at the current node of the train at the head, then take it's place with the data passed through
   def prepend(data)
     data_array = to_array(data)
-    # data_array = []
-    # data_array << data.lines(' ')
-    # data_array = data_array.flatten
-    # data_array.map! {|array| array.rstrip}
-#editing code to make sure prepend also takes more than one data
     until data_array.length == 0
     current_node = @head
     @head = Node.new(data_array.pop)
@@ -69,30 +62,38 @@ class LinkedList
     new_head.next_node = current_node
     end
   end
-
   
-
-    #I will need a place holder hash to count their positions?
   def insert(pos, data)
+    data_array = to_array(data)
     current_node = @head
     current_node_place = 0
-    place_holder = {current_node_place => current_node}
+    index_hash = {current_node_place => current_node}
+    # create the data for index_hash by looping
     until current_node.next_node == nil
       current_node_place += 1
       current_node = current_node.next_node
-      place_holder.store(current_node_place, current_node)
+      index_hash.store(current_node_place, current_node)
     end
-    key_1 = pos - 1
-    new_node = Node.new(data)
-    # Split the train in half
-    first_half = place_holder[key_1]
-    second_half = place_holder[pos]
-    # Train needs to attach at the new node before attaching to the rest of the train, because to continue, the new_node needs to know who is behind
-    new_node.next_node = second_half
-    first_half.next_node = new_node
+    # create separate linked list with data passed through
+    data_node = Node.new(data_array.pop)
+    current_node = data_node
+    until data_array.length == 0
+      data_node = Node.new(data_array.pop)
+      data_node.next_node = current_node
+      current_node = data_node
+    end
+    # break the train into two halves, and attach separate linked list
+    break_off = pos - 1
+    first_half = index_hash[break_off]
+    second_half = index_hash[pos]
+    first_half.next_node = data_node
+    while first_half.next_node != nil
+      next_node = first_half.next_node
+      first_half = next_node
+    end
+    first_half.next_node = second_half
   end
 
-  # Position, how many elements to return
   def find(pos, num)
     pos = pos
     count = 0
@@ -130,19 +131,17 @@ class LinkedList
     list.include?(data)
   end
 
-protected
-
   def position(num)
     current_node = @head
     current_node_place = 0
-    place_holder = {current_node_place => current_node}
-    key_1 = num - 1
+    index_hash = {current_node_place => current_node}
+    # index = num - 1
     until current_node.next_node == nil
       current_node_place += 1
       current_node = current_node.next_node
-      place_holder.store(current_node_place, current_node)
+      index_hash.store(current_node_place, current_node)
     end
-    place_holder[num]
+    index_hash[num]
   end
 
   def to_array(data)
@@ -150,5 +149,30 @@ protected
     data_array << data.lines(' ')
     data_array = data_array.flatten
     data_array.map! {|array| array.rstrip}
+  end
+
+  def shift_array(array)
+    data_array = []
+    data_array << data.lines(' ')
+    data_array = data_array.flatten
+    data_array.map! {|array| array.rstrip}
+    until data_array.length == 0
+      array = data_array.shift
+      current_node = @head
+      next_node = @head.next_node
+      while current_node.next_node != nil
+        next_node = current_node.next_node
+        current_node = next_node
+      end
+    end
+  end
+
+  def find_nil
+    current_node = @head
+    next_node = @head.next_node
+    while current_node.next_node != nil
+      next_node = current_node.next_node
+      current_node = next_node
+    end
   end
 end
