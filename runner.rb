@@ -8,10 +8,12 @@ bb.prepend("beep")
 bb.prepend("wop beep boop baap beee deep doop daap deee")
 bb.append("wop beep boop baap beee")
 
-bb.rate
+bb.reset_rate
 bb.play
-bb.voice("Samantha")
+bb.voice = "Samantha"
+bb.play
+bb.rate = 400
+bb.play
+bb.reset_voice
 bb.play
 
-# say -r 500 -v Boing "ding dah oom oom ding oom oom oom ding dah oom oom ding dah oom oom ding dah oom oom "
-# data_array = ["beep", "boop", "baap", "beee"]

@@ -84,21 +84,18 @@ RSpec.describe BeatBox do
     end
   end
 
-  it 'can let the user choose the rate at which to play the beats' do
-    bb = BeatBox.new("beep")
-
-
-  end
-
-  it 'can allow the user to pick the voice' do
-
-  end
-
   it 'can reset the rate' do
+    bb = BeatBox.new("derp")
 
+    expect(bb.rate).to eq(150)
+    expect(bb.reset_rate).to eq(500)
   end
 
   it 'can reset the voice' do
-  
+  bb = BeatBox.new("derp")
+  bb.voice = "Samantha"
+
+  expect(bb.voice).to eq("Samantha")
+  expect(bb.reset_voice).to eq("Boing")
   end
 end

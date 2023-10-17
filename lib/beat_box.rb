@@ -32,15 +32,7 @@ class BeatBox
   end
 
   def play
-    `say -r #{@rate} -v #{@voice} \"#{self.to_string}\"`
-  end
-
-  def rate
-    150
-  end
-
-  def voice(gets)
-    gets
+    `say -r #{self.rate} -v #{self.voice} \"#{self.to_string}\"`
   end
 
 # rate getter
@@ -62,4 +54,13 @@ class BeatBox
   def voice=(voice)
     @voice = voice
   end
+
+  def reset_rate
+    @rate = 500
+  end
+
+  def reset_voice
+    @voice = "Boing"
+  end
+  
 end
