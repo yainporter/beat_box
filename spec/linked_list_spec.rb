@@ -55,8 +55,8 @@ RSpec.describe LinkedList do
 
   it 'can count' do
     list = LinkedList.new
-    list.append("dee")
 
+    list.append("dee")
     expect(list.count).to eq(1)
 
     list.append("doo")
@@ -67,8 +67,11 @@ RSpec.describe LinkedList do
     list = LinkedList.new
     list.append("dee")
 
-    string = list.to_string
-    expect(string).to eq("dee")
+    expect(list.to_string).to eq("dee")
+
+    list.prepend("doop wop")
+    list.insert(2, "hee haw")
+    expect(list.to_string).to eq("doop wop hee haw dee")
   end
 
   it 'can add nodes to the head of the list' do 
@@ -108,6 +111,7 @@ RSpec.describe LinkedList do
     list.prepend("doop")  
 
     expect(list.find(2, 2)).to eq("dop deep")
+    expect(list.find(3, 1)).to eq("deep")
   end
 
   it 'can tell you whether the data is in the list' do
@@ -122,6 +126,9 @@ RSpec.describe LinkedList do
 
   it 'can remove the last element from the list and return it' do
     list = LinkedList.new
+
+    expect(list.pop).to eq(nil)
+
     list.append("dee")
     list.append("dop")
     list.append("deep")
@@ -129,6 +136,12 @@ RSpec.describe LinkedList do
 
     expect(list.pop).to eq("deep")
     expect(list.count).to eq(3)
+
+    list = LinkedList.new
+    list.append("dee")
+
+    expect(list.pop).to eq("dee")
+    expect(list.count).to eq(0)
   end
 
   it 'can prepend data' do
@@ -165,6 +178,5 @@ RSpec.describe LinkedList do
   expect(list.count).to eq(3)
   expect(list.to_string). to eq("derp dee doo")
   end
-
 
 end

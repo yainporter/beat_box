@@ -98,4 +98,16 @@ RSpec.describe BeatBox do
   expect(bb.voice).to eq("Samantha")
   expect(bb.reset_voice).to eq("Boing")
   end
+
+
+  it 'can pop data off the list' do
+    bb = BeatBox.new("beep")
+   
+
+    expect(bb.pop).to eq("beep")
+    expect(bb.count).to eq(0)
+  end
+
+  it 'can insert data in the list' do
+  end
 end
