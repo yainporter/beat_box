@@ -162,9 +162,4 @@ class LinkedList
     data_array 
 
   end
-
-  def check_sounds(data)
-    to_array(data)
-    valid_beats(data)
-  end
 end

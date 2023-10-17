@@ -6,7 +6,7 @@ class BeatBox
 
   def initialize(data = nil)
     if data != nil
-    @list = LinkedList.new
+    @list = LinkedList.new(Node.new(data))
     @list.head = Node.new(data)
     else
       @list  = LinkedList.new
@@ -30,6 +30,15 @@ class BeatBox
   end
 
   def play
-    `say -r 500 -v Boing \"#{self.to_string}\"`
+    `say -r #{self.rate} -v #{self.voice} \"#{self.to_string}\"`
   end
+
+  def rate
+    150
+  end
+
+  def voice(gets)
+    gets
+  end
+
 end

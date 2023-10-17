@@ -12,57 +12,63 @@ RSpec.describe BeatBox do
 
   it 'can append data' do
     bb = BeatBox.new
-    bb.append("hello")
+    bb.append("beep")
     data = bb.list.head.data
-    expect(data).to eq("hello")
+    expect(data).to eq("beep")
     expect(bb.count).to eq (1)
   end
 
   it 'can count the list of data' do
     bb = BeatBox.new
-    bb.append("hello")
-    bb.append("my")
-    bb.append("name")
-    bb.append("is")
+    bb.append("beep")
+    bb.append("bop")
+    bb.append("boop")
+    bb.append("bap")
 
     expect(bb.count).to eq(4)
   end
 
   it 'can turn all the data in a list to a string' do
     bb = BeatBox.new
-    bb.append("hello")
-    bb.append("my")
-    bb.append("name")
-    bb.append("is")
-    bb.prepend("Yain")
+    bb.append("beep")
+    bb.append("bop")
+    bb.append("boop")
+    bb.append("bap")
 
-    expect(bb.to_string).to eq("Yain hello my name is")
+    expect(bb.to_string).to eq("beep bop boop bap")
   end
 
   it 'can prepend data' do
     bb = BeatBox.new
-    bb.append("hello")
-    bb.append("my")
-    bb.append("name")
-    bb.append("is")
-    bb.prepend("Yain")
+    bb.append("beep")
+    bb.append("bop")
+    bb.append("boop")
+    bb.append("bap")
+    bb.prepend("derp")
 
     prepend_data = bb.list.head.data
-    expect(prepend_data).to eq("Yain")
+    expect(prepend_data).to eq("derp")
 
-    bb.prepend("Hello my name is Yain")
+    bb.prepend("dee daa doo")
     string = bb.to_string
-    expect(string).to eq("Hello my name is Yain Yain hello my name is")  
+    expect(string).to eq("dee daa doo derp beep bop boop bap")  
   end
 
-  it 'can have a list of valid beats' do
+  it 'can let the user choose the rate at which to play the beats' do
+    bb = BeatBox.new("beep")
+
 
   end
 
-    
+  it 'can allow the user to pick the voice' do
 
-  it 'can check all data sounds passed to make sure they are on the approved list' do
-    list = LinkedList.new
+  end
 
+  it 'can reset the rate' do
+
+  end
+
+  it 'can reset the voice' do
+  
   end
 end
