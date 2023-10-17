@@ -22,13 +22,10 @@ class LinkedList
       until data_array.length == 0 
         array = data_array.shift
         current_node = @head
-        next_node = @head.next_node
-        while current_node.next_node != nil
-          next_node = current_node.next_node
-          current_node = next_node
+        until current_node.next_node == nil
+          current_node = current_node.next_node
         end
         current_node.next_node = Node.new(array)
-        current_node = current_node.next_node
       end
     end
   end
@@ -159,7 +156,6 @@ class LinkedList
     data_array = data
     valid_beats = ["tee","dee","deep","bop", "boop","la","na","wop","weep", "wap", "wup",  "wip",  "deep", "daah", "dah", "dee", "derp", "da", "daa", "dop", "dip", "dup", "dep", "bip", "bap", "baap", "baa", "bup", "baah","buup","tip","tap","top","lee","lah","luh","lap","lip","lop","hee","haw","hip","hop","beep", "doop", "doo", "dap"]
     data_array.select! {|beat_test| valid_beats.include?(beat_test)}
-    data_array 
-
+    data_array
   end
 end
