@@ -8,6 +8,8 @@ class BeatBox
     if data != nil
     @list = LinkedList.new(Node.new(data))
     @list.head = Node.new(data)
+    @rate = 150
+    @voice = "Boing"
     else
       @list  = LinkedList.new
     end
@@ -30,7 +32,7 @@ class BeatBox
   end
 
   def play
-    `say -r #{self.rate} -v #{self.voice} \"#{self.to_string}\"`
+    `say -r #{@rate} -v #{@voice} \"#{self.to_string}\"`
   end
 
   def rate
@@ -41,4 +43,23 @@ class BeatBox
     gets
   end
 
+# rate getter
+  def rate
+    @rate
+  end
+
+# rate setter
+  def rate=(rate)
+    @rate = rate
+  end
+
+  # voice getter
+  def voice
+    @voice
+  end
+
+  # voice setter
+  def voice=(voice)
+    @voice = voice
+  end
 end

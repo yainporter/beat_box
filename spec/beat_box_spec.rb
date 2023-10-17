@@ -54,6 +54,36 @@ RSpec.describe BeatBox do
     expect(string).to eq("dee daa doo derp beep bop boop bap")  
   end
 
+  describe 'it has a rate method' do
+    it 'has a getter method for rate' do
+      bb = BeatBox.new("beep")
+
+      expect(bb.rate).to eq(150)
+    end
+
+    it 'has a setter method for rate' do
+      bb = BeatBox.new("beep")
+      bb.rate = 500
+
+      expect(bb.rate).to eq(500)
+    end
+  end
+
+  describe 'it has a voice method' do
+    it 'has a getter method for voice' do
+      bb = BeatBox.new("beep")
+      
+      expect(bb.voice).to eq("Boing")
+    end
+
+    it 'has a setter method for voice' do
+      bb = BeatBox.new("beep")
+      bb.voice = "Samantha"
+
+      expect(bb.voice).to eq("Samantha")
+    end
+  end
+
   it 'can let the user choose the rate at which to play the beats' do
     bb = BeatBox.new("beep")
 
