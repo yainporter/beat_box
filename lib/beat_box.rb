@@ -35,6 +35,14 @@ class BeatBox
     `say -r #{self.rate} -v #{self.voice} \"#{self.to_string}\"`
   end
 
+  def pop
+    self.list.pop
+  end
+
+  def insert(pos, num)
+    self.list.insert(pos,num)
+  end
+  
 # rate getter
   def rate
     @rate
@@ -62,5 +70,5 @@ class BeatBox
   def reset_voice
     @voice = "Boing"
   end
-  
+
 end
