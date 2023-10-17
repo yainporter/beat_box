@@ -122,6 +122,9 @@ RSpec.describe LinkedList do
 
   it 'can remove the last element from the list and return it' do
     list = LinkedList.new
+
+    expect(list.pop).to eq(nil)
+
     list.append("dee")
     list.append("dop")
     list.append("deep")
@@ -129,6 +132,12 @@ RSpec.describe LinkedList do
 
     expect(list.pop).to eq("deep")
     expect(list.count).to eq(3)
+
+    list = LinkedList.new
+    list.append("dee")
+
+    expect(list.pop).to eq("dee")
+    expect(list.count).to eq(0)
   end
 
   it 'can prepend data' do
@@ -165,6 +174,5 @@ RSpec.describe LinkedList do
   expect(list.count).to eq(3)
   expect(list.to_string). to eq("derp dee doo")
   end
-
 
 end

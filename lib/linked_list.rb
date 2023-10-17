@@ -108,15 +108,15 @@ class LinkedList
 
   def pop
     current_node = @head
-    pop_data = nil
     if current_node == nil
-      current_node.data
       return nil
+    elsif current_node.next_node == nil
+      pop_data = current_node.data
+      @head = nil
     else
-      new_list = current_node
       next_node = current_node.next_node
-      until next_node.next_node == nil
-        current_node = next_node
+      until next_node.next_node == nil 
+        current_node = current_node.next_node
         next_node = current_node.next_node
       end 
       pop_data = next_node.data
