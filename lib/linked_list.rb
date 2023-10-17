@@ -71,13 +71,13 @@ class LinkedList
   end
   
   def insert(pos, beat)
-    data_array = to_array(beat)
-    data_array = valid_beats(data_array)
+    beats_array = to_array(beat)
+    beats_array = valid_beats(beats_array)
     # create separate linked list with beat passed through
-    data_node = Node.new(data_array.pop)
+    data_node = Node.new(beats_array.pop)
     current_node = data_node
-    until data_array.length == 0
-      data_node = Node.new(data_array.pop)
+    until beats_array.length == 0
+      data_node = Node.new(beats_array.pop)
       data_node.next_node = current_node
       current_node = data_node
     end

@@ -4,10 +4,10 @@ require './lib/node'
 class BeatBox 
   attr_accessor :list
 
-  def initialize(data = nil)
-    if data != nil
-    @list = LinkedList.new(Node.new(data))
-    @list.head = Node.new(data)
+  def initialize(beat = nil)
+    if beat != nil
+    @list = LinkedList.new(Node.new(beat))
+    @list.head = Node.new(beat)
     @rate = 150
     @voice = "Boing"
     else
@@ -15,8 +15,8 @@ class BeatBox
     end
   end
 
-  def append(data)
-    self.list.append(data)
+  def append(beat)
+    self.list.append(beat)
   end
 
   def count
@@ -27,8 +27,8 @@ class BeatBox
     self.list.to_string
   end
 
-  def prepend(data)
-    self.list.prepend(data)
+  def prepend(beat)
+    self.list.prepend(beat)
   end
 
   def play

@@ -105,7 +105,7 @@ RSpec.describe BeatBox do
    
 
     expect(bb.pop).to eq("beep")
-    expect(bb.count).to eq(nil)
+    expect(bb.count).to eq(0)
   end
 
   it 'can insert data in the list' do
