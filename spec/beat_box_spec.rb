@@ -52,11 +52,17 @@ RSpec.describe BeatBox do
 
     bb.prepend("Hello my name is Yain")
     string = bb.to_string
-    require 'pry'; binding.pry
-    expect(string).to eq("Hello my name is Yain Yain hello my name is")
-    
-
-    
+    expect(string).to eq("Hello my name is Yain Yain hello my name is")  
   end
 
+  it 'can have a list of valid beats' do
+
+  end
+
+    
+
+  it 'can check all data sounds passed to make sure they are on the approved list' do
+    list = LinkedList.new
+
+  end
 end

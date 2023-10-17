@@ -9,22 +9,27 @@ class LinkedList
 
   def append(data)
     data_array = to_array(data)
-    while @head == nil
-      @head = Node.new(data_array.shift)
-      if data_array.length == 0
-        break
+    data_array = valid_beats(data_array)
+    if data_array == []
+      puts "Error - your beat is not valid"
+    else
+      while @head == nil
+        @head = Node.new(data_array.shift)
+        if data_array.length == 0
+          break
+        end
       end
-    end
-    until data_array.length == 0
-      array = data_array.shift
-      current_node = @head
-      next_node = @head.next_node
-      while current_node.next_node != nil
-        next_node = current_node.next_node
-        current_node = next_node
+      until data_array.length == 0 
+        array = data_array.shift
+        current_node = @head
+        next_node = @head.next_node
+        while current_node.next_node != nil
+          next_node = current_node.next_node
+          current_node = next_node
+        end
+        current_node.next_node = Node.new(array)
+        current_node = current_node.next_node
       end
-      current_node.next_node = Node.new(array)
-      current_node = current_node.next_node
     end
   end
 
@@ -45,16 +50,21 @@ class LinkedList
   def to_string
     strings = []
     current_node = @head
-    strings << current_node.data
-    while current_node.next_node != nil
-      current_node = current_node.next_node
+    if @head == nil
+      puts "Error, no data"
+    else
       strings << current_node.data
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        strings << current_node.data
+      end
+      strings.join(" ")
     end
-    strings.join(" ")
   end
 
   def prepend(data)
     data_array = to_array(data)
+    data_array = valid_beats(data_array)
     until data_array.length == 0
     current_node = @head
     @head = Node.new(data_array.pop)
@@ -65,15 +75,7 @@ class LinkedList
   
   def insert(pos, data)
     data_array = to_array(data)
-    current_node = @head
-    current_node_place = 0
-    index_hash = {current_node_place => current_node}
-    # create the data for index_hash by looping
-    until current_node.next_node == nil
-      current_node_place += 1
-      current_node = current_node.next_node
-      index_hash.store(current_node_place, current_node)
-    end
+    data_array = valid_beats(data_array)
     # create separate linked list with data passed through
     data_node = Node.new(data_array.pop)
     current_node = data_node
@@ -82,10 +84,10 @@ class LinkedList
       data_node.next_node = current_node
       current_node = data_node
     end
-    # break the train into two halves, and attach separate linked list
+    # break the train into two halves with #position, and attach separate linked list
     break_off = pos - 1
-    first_half = index_hash[break_off]
-    second_half = index_hash[pos]
+    first_half = self.position(break_off)
+    second_half = self.position(pos)
     first_half.next_node = data_node
     while first_half.next_node != nil
       next_node = first_half.next_node
@@ -131,11 +133,11 @@ class LinkedList
     list.include?(data)
   end
 
+  # Use to find the index position of the LinkedList
   def position(num)
     current_node = @head
     current_node_place = 0
     index_hash = {current_node_place => current_node}
-    # index = num - 1
     until current_node.next_node == nil
       current_node_place += 1
       current_node = current_node.next_node
@@ -144,6 +146,7 @@ class LinkedList
     index_hash[num]
   end
 
+  # Use to turn all data arguments to an array
   def to_array(data)
     data_array = []
     data_array << data.lines(' ')
@@ -151,28 +154,17 @@ class LinkedList
     data_array.map! {|array| array.rstrip}
   end
 
-  def shift_array(array)
-    data_array = []
-    data_array << data.lines(' ')
-    data_array = data_array.flatten
-    data_array.map! {|array| array.rstrip}
-    until data_array.length == 0
-      array = data_array.shift
-      current_node = @head
-      next_node = @head.next_node
-      while current_node.next_node != nil
-        next_node = current_node.next_node
-        current_node = next_node
-      end
-    end
+  #select with conditional block
+  def valid_beats(data)
+    data_array = data
+    valid_beats = ["tee","dee","deep","bop", "boop","la","na","wop","weep", "wap", "wup",  "wip",  "deep", "daah", "dah", "dee", "derp", "da", "daa", "dop", "dip", "dup", "dep", "bip", "bap", "baap", "baa", "bup", "baah","buup","tip","tap","top","lee","lah","luh","lap","lip","lop","hee","haw","hip","hop","beep", "doop", "doo", "dap"]
+    data_array.select! {|beat_test| valid_beats.include?(beat_test)}
+    data_array 
+
   end
 
-  def find_nil
-    current_node = @head
-    next_node = @head.next_node
-    while current_node.next_node != nil
-      next_node = current_node.next_node
-      current_node = next_node
-    end
+  def check_sounds(data)
+    to_array(data)
+    valid_beats(data)
   end
 end

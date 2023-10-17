@@ -36,9 +36,10 @@ RSpec.describe LinkedList do
 
       expect(list.to_string).to eq("dee doo")
 
-      list.append("beep boop baap beee deep doop daap deee")
-
-      expect(list.count).to eq(10)
+      list.append("beep boop bap deep doop dap dee")
+      
+      expect(list.to_string).to eq ("dee doo beep boop bap deep doop dap dee")
+      expect(list.count).to eq(9)
     end
 
     it 'can access the next node of the next node' do
@@ -88,14 +89,14 @@ RSpec.describe LinkedList do
     list.append("dee")
     list.append("dop")
     list.prepend("doop")
-    list.insert(1, "wheee")
+    list.insert(1, "wop")
 
     expect(list.count).to eq(4)
-    expect(list.to_string).to eq("doop wheee dee dop")
+    expect(list.to_string).to eq("doop wop dee dop")
 
-    list.insert(1, "dee doo dah whoop whaap")
+    list.insert(1, "dee doo dah wop wap")
     expect(list.count).to eq(9)
-    expect(list.to_string). to eq("doop dee doo dah whoop whaap wheee dee dop")
+    expect(list.to_string). to eq("doop dee doo dah wop wap wop dee dop")
 
   end
   
@@ -145,10 +146,25 @@ RSpec.describe LinkedList do
     list = LinkedList.new
     list.append("dee")
     list.prepend("doop") 
-    list.prepend("this is me testing my code")
+    list.prepend("dee dah derp")
     prepend_data = list.head.data
 
-    expect(prepend_data).to eq("this")
-    expect(list.count).to eq(8)
+    expect(prepend_data).to eq("dee")
+    expect(list.count).to eq(5)
   end
+
+  it 'can check the beats to see if they are valid' do
+  list = LinkedList.new
+  list.append("test test hello")
+  list.append("test test hello")
+
+  expect(list.to_string).to eq(nil)
+  expect(list.head).to eq(nil)
+
+  list.append("derp dee test doo test")
+  expect(list.count).to eq(3)
+  expect(list.to_string). to eq("derp dee doo")
+  end
+
+
 end
