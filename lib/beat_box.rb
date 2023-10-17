@@ -42,7 +42,7 @@ class BeatBox
   def insert(pos, num)
     self.list.insert(pos,num)
   end
-  
+
 # rate getter
   def rate
     @rate
