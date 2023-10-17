@@ -86,7 +86,7 @@ class LinkedList
     first_half = self.position(break_off)
     second_half = self.position(pos)
     first_half.next_node = data_node
-    while first_half.next_node != nil
+    until first_half.next_node == nil
       next_node = first_half.next_node
       first_half = next_node
     end
